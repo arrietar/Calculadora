@@ -1,0 +1,42 @@
+@startuml
+title Operacion de Calculadora
+
+participant Calculadora
+participant Pantalla
+participant Boton
+
+== Flujo Principal ==
+
+Calculadora->Pantalla: mostrarValorInicial()
+note right of Calculadora: Initializa pantalla\ncon un valor por defecto
+
+loop Hasta que un boton es presionado
+    Calculadora->Boton: esperarClic()
+    note right of Boton: Espera hasta que el usuario\nhace clic en un boton
+
+    alt Boton Numerico Presionado
+        Boton->Calculadora: manejarClicBotonNumerico(valor)
+        note right of Boton: Envia valor numerico\nde boton presionado
+        Calculadora->Calculadora: actualizaPantalla(valor)
+        note right of Calculadora: Anexar valor al valor\nactual en pantalla
+    else Boton Operador Presionado
+        Boton->Calculadora: manejaClicBotonOperador(operador)
+        note right of Boton: Envia la operacion\ndel boton presionado
+        Calculadora->Calculadora: realizaCalculo(operador)
+        note right of Calculadora: Realiza calculo\nbasado en el operador
+        Calculadora->Pantalla: actualizarPantalla(resultado)
+        note right of Calculadora: Actualiza la pantalla\ncon el resultado del calculo
+    end
+
+end
+
+== Flujo de Excepcion ==
+
+alt Boton Limpiar Presionado
+    Boton->Calculadora: manejarBotonLimpiarPresionado()
+    note right of Boton: Envia la senal de limpiar
+    Calculadora->Calculadora: limpiarPantalla()
+    note right of Calculadora: Limpia la pantalla
+end
+
+@enduml

@@ -1,0 +1,25 @@
+@startuml
+class Calculadora {
+  - resultadoActual: double
+  + limpiar()
+  + retroceder()
+  + anexarNumero(int numero)
+  + setOperador(String operador)
+  + calcularResultado()
+}
+
+class Pantalla {
+  - valor: String
+  + getValor(): String
+  + setValor(String value)
+}
+
+class Boton {
+  - etiqueta: String
+  + getEtiqueta(): String
+  + setEtiqueta(String label)
+}
+
+Calculadora "usa" --> "1" Pantalla
+Calculadora "tiene" o--> "*" Boton
+@enduml

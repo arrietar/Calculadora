@@ -1,0 +1,22 @@
+@startuml
+
+left to right direction
+
+actor Usuario as U
+rectangle Calculadora {
+  usecase Ingresar_Valor_Numerico as UC1
+  usecase Ingresar_Operador as UC2
+  usecase Realizar_Calculo as UC3
+  usecase Limpiar_Pantalla as UC4
+}
+
+U --> UC1
+U --> UC2
+U --> UC3
+U --> UC4
+UC1 --> Calculadora
+UC2 --> Calculadora
+UC3 --> Calculadora
+UC4 --> Calculadora
+
+@enduml

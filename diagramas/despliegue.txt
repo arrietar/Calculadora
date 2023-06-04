@@ -1,0 +1,26 @@
+@startuml
+node "Usuario" as user
+node "Google Play Store" as playstore {
+    component "Listado de Aplicaciones" as listing
+    component "Carga de APK" as upload
+    component "Distribucion de App" as distribution
+}
+
+node "Google Play Services" as services {
+    component "Facturacion de App"
+    component "Notificaciones Push"
+    component "Analytics"
+}
+
+node "Backend Server Calculadora" as server {
+    component "API Server" as api
+    database "BD" as db
+}
+
+user --> listing
+listing --> upload
+upload --> distribution
+distribution --> services
+services --> api
+api --> db
+@enduml
